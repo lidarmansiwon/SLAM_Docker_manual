@@ -3,14 +3,14 @@ This repository contains the SLAM_Docker documentation created by lidarsiwon
 
 docker.io page -->  https://hub.docker.com/repository/docker/lidarmansiwon/macro_slam/general
 
-## Terminal Command sequence
+## Terminal Command sequence (If bashrc already has an alias for slam_docker)
 ```
-slam_docker      ## alias  "docker run -it -d --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix --pid=host --ipc=host lidarmansiwon/macro_slam_arm64:2.0"
-sudo docker ps   ## check container ID 
+slam_docker      
+sudo docker ps   
 sudo docker exec -it [container ID] bash
 
-mapping          ## alias  "ros2 launch lidarslam lidarslam.launch.py"
-localization     ## alias  "ros2 launch hdl_localization hdl_localization_2.launch.py"
+mapping          
+localization     
 ```
 
 
