@@ -9,6 +9,7 @@ slam_docker
 sudo docker ps   
 sudo docker exec -it [container ID] bash
 
+# In docker terminal
 mapping          
 localization     
 ```
