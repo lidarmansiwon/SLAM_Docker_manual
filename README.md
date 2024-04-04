@@ -5,12 +5,12 @@ docker.io page -->  https://hub.docker.com/repository/docker/lidarmansiwon/macro
 
 ## Terminal Command sequence
 ```
-slam_docker
-sudo docker ps
+slam_docker      ## alias  "docker run -it -d --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix --pid=host --ipc=host lidarmansiwon/macro_slam_arm64:2.0"
+sudo docker ps   ## check container ID 
 sudo docker exec -it [container ID] bash
 
-mapping
-localization
+mapping          ## alias  "ros2 launch lidarslam lidarslam.launch.py"
+localization     ## alias  "ros2 launch hdl_localization hdl_localization_2.launch.py"
 ```
 
 
