@@ -3,6 +3,17 @@ This repository contains the SLAM_Docker documentation created by lidarsiwon
 
 docker.io page -->  https://hub.docker.com/repository/docker/lidarmansiwon/macro_slam/general
 
+## Terminal Command sequence
+```
+slam_docker
+sudo docker ps
+sudo docker exec -it [container ID] bash
+
+mapping
+localization
+```
+
+
 ## 1. Pull docker image from Docker server
 
 arm64 users --> 
@@ -71,16 +82,6 @@ or
 ``` mapping ``` 
 
 ``` localization ```
-
-## Terminal Command sequence
-```
-slam_docker
-sudo docker ps
-sudo docker exec -it [container ID] bash
-
-mapping
-localization
-```
 
 
 
