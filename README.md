@@ -72,6 +72,18 @@ or
 
 ``` localization ```
 
+## Terminal Command sequence
+```
+slam_docker
+sudo docker ps
+sudo docker exec -it [container ID] bash
+
+mapping
+localization
+```
+
+
+
 ## If you need to edit ROS_NAMESPACE 
 
 If you need to edit ROS_NAMESPACE. Make sure to modify the file below
