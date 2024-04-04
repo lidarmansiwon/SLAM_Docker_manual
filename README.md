@@ -5,7 +5,9 @@ https://hub.docker.com/repository/docker/lidarmansiwon/macro_slam/general
 ## 1. Pull docker image from Docker server
 
 arm64 users --> ``` docker pull lidarmansiwon/macro_slam_arm64:2.0 ```
+
 amd64 users --> ``` docker pull lidarmansiwon/macro_slam:2.0 ```
+
 if you need Permission, using "sudo"
 
 ``` sudo docker images ``` --> Check the pulled image
