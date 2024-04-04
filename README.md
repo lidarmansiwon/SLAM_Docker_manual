@@ -4,11 +4,13 @@ https://hub.docker.com/repository/docker/lidarmansiwon/macro_slam/general
 
 ## 1. Pull docker image from Docker server
 
-arm64 users --> ``` 
+arm64 users --> 
+``` 
 docker pull lidarmansiwon/macro_slam_arm64:2.0
 ```
 
-amd64 users --> ```
+amd64 users -->
+```
 docker pull lidarmansiwon/macro_slam:2.0
 ```
 
@@ -34,9 +36,15 @@ docker run -it -d --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix --pid=host
 or
 
 **If bashrc already has an alias** 
-``` slam_docker ``` 
 
-``` docker ps ```
+```
+slam_docker
+``` 
+
+
+```
+docker ps
+```
 
 **output** :  
 
