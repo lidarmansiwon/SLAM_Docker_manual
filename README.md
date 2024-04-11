@@ -7,7 +7,7 @@ docker.io page -->  https://hub.docker.com/repository/docker/lidarmansiwon/macro
 ```
 slam_docker      
 sudo docker ps   
-sudo docker exec -it [container ID] bash
+sudo docker exec -it [container ID] bash  ## docker terminal 접속 명령어
 
 # In docker terminal
 mapping          
