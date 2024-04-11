@@ -92,4 +92,51 @@ If you need to edit ROS_NAMESPACE. Make sure to modify the file below
 
 ![Untitled (53)](https://github.com/lidarmansiwon/SLAM_Docker_manual/assets/117976120/bb923350-f9fc-46d6-95e4-7216e20b7f9e)
 
+## How to use slam 
+
+Before you launch mapping, you can consider about tf. If you use ouster. you can choose os_sensor or os_lidar.
+(맵핑하기 이전에 반드시 원하는 축으로 회전한뒤 매핑하여야함.)
+
+```
+    tf = launch_ros.actions.Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        namespace=ros_namespace,
+        arguments=['0','0','0','0','0','1','0','base_link','os_lidar']  # Change " w = 0 , z = 1 " from " w = 1 , z = 0 " cause changed os_lidar from os_sensor
+        )
+```
+
+
+If you launch mapping(alias: ros2 launch lidarslam lidarslam.launch.py)and you got a well map. you should save map.pcd
+(아래 명령어로 맵 데이터를 저장할 수 있다.)
+
+```
+ros2 service call /map_save std_srvs/Empty
+```
+
+You can find map.pcd file and pose_graph.g2o file in
+After you find file. you can get path with command "pwd"
+("pwd"로 경로 따서 런치 파일 수정해줘야함.)
+
+And Then, For using localization you should edit hdl_localization_2.launch.py(/hdl-localization-ROS2/hdl_localization/launch/)
+
+```
+                    {'globalmap_pcd': '/home/sw/ros2_ws/src/lidarslam_ros2/map/map.pcd'},
+                    {'convert_utm_to_local': True},
+                    {'downsample_resolution': 0.3}]),  # 0.1 to 0.5
+```
+You should change globalmap_pcd path to your map.pcd and g2o path.
+
+Also You can use tf!
+
+```
+    lidar_tf = Node(
+        name='lidar_tf',
+        package='tf2_ros',
+        namespace=ros_namespace,
+        executable='static_transform_publisher',
+        arguments=['0.0', '0.0', '0.0', '0.0', '1.0',
+                   '0.0', '0.0', 'odom', 'os_lidar']
+    )
+```
 
