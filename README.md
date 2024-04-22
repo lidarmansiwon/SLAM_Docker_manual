@@ -10,10 +10,13 @@ sudo docker ps
 sudo docker exec -it [container ID] bash  ## docker terminal 접속 명령어
 
 # In docker terminal
-mapping          
+medit         ## Edit for mapping parameter. You should match pointcloud topic and if you want, you can edit tf or other parameter.
+mparam        ## If you edit mapping param. You can use this command
+ledit         ## Edit for localization parameter. 
+mapping
+map_save      ## You can save map.pcd in path "/". Delete a file if it already exists in that location before using the command. [ros2 service call /map_save std_srvs/Empty] 
 localization     
 ```
-
 
 ## 1. Pull docker image from Docker server
 
@@ -24,7 +27,7 @@ docker pull lidarmansiwon/macro_slam_arm64:2.0
 
 amd64 users -->
 ```
-docker pull lidarmansiwon/macro_slam:2.0
+docker pull lidarmansiwon/macro_slam:5.0
 ```
 
 if you need Permission, using "```sudo```"
@@ -140,3 +143,35 @@ Also You can use tf!
     )
 ```
 
+- frontend(scan-matcher)
+
+|Name|Type|Default value|Description|
+|---|---|---|---|
+|registration_method|string|"NDT"|"NDT" or "GICP"|
+|ndt_resolution|double|5.0|resolution size of voxel[m]|
+|ndt_num_threads|int|0|threads using ndt(if `0` is set, maximum alloawble threads are used.)(The higher the number, the better, but reduce it if the CPU processing is too large to estimate its own position.)|
+|trans_for_mapupdate|double|1.5|moving distance of map update[m]|
+
+- backend(graph-based-slam)
+
+|Name|Type|Default value|Description|
+|---|---|---|---|
+|registration_method|string|"NDT"|"NDT" or "GICP"|
+|ndt_resolution|double|5.0|resolution size of voxel[m]|
+|ndt_num_threads|int|0|threads using ndt(if `0` is set, maximum alloawble threads are used.)|
+|voxel_leaf_size|double|0.2|down sample size of input cloud[m]|
+|loop_detection_period|int|1000|period of searching loop detection[ms]|
+|threshold_loop_closure_score|double|1.0| fitness score of ndt for loop clousure|
+|distance_loop_closure|double|20.0| distance far from revisit candidates for loop clousure[m]|
+|range_of_searching_loop_closure|double|20.0|search radius for candidate points from the present for loop closure[m]|
+|search_submap_num|int|2|the number of submap points before and after the revisit point used for registration|
+|num_adjacent_pose_cnstraints|int|5|the number of constraints between successive nodes in a pose graph over time|
+|use_save_map_in_loop|bool|true|Whether to save the map when loop close(If the map saving process in loop close is too heavy and the self-position estimation fails, set this to `false`.)|
+
+For example! 
+
+Used parameters for indoor environment:
+ndt_resolution: 1.0
+ndt_num_threads: 5
+trans_for_mapupdate: 0.2
+voxel_leaf_size: 0.1
